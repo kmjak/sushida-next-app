@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "d55a",
+      "uuid": "1",
+      "name": "kmjak",
+      "pass": "kmjak@123"
+    },
+    {
+      "id": "305e",
+      "uuid": "68d6177a-2e84-4ce5-98e8-36845a9c8dff",
+      "name": "user01",
+      "pass": "pass@123"
+    }
+  ]
+}
