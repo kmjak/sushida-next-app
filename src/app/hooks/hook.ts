@@ -2,11 +2,40 @@ import { UserType } from '@/types/usertype';
 import { createUser, getAllUsers } from '@/api/json-server';
 import { FormEvent } from 'react';
 
-export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string) {
-  const Login = async (datas: UserType[]) => {
-    const user = isExistUser({datas,name,pass});
+export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string, router: any) {
+  e.preventDefault();
+
+  const validate = (name: string, pass: string) => {
+    if (!name || !pass) {
+      alert("name or pass is empty");
+      return false;
+    }
+    if(name.length < 1 || pass.length < 4){
+      alert("name or pass is too short");
+      return false;
+    }
+    if(name.length > 20 || pass.length > 20){
+      alert("name or pass is too long");
+      return false;
+    }
+    if(name.match(/[^A-Za-z0-9@_-]/)){
+      alert("name is invalid");
+      return false;
+    }
+    if(pass.match(/[^A-Za-z0-9@_-]/)){
+      alert("pass is invalid");
+      return false;
+    }
+    return true;
+  }
+
+  const Login = async (datas: UserType[], name: string, pass: string) => {
+    if (!validate(name, pass)) {
+      return false;
+    }
+    const user = isExistUser({ datas, name, pass });
     if (user) {
-      const r = await fetch("/services/jwt/create", {
+      await fetch("/services/jwt/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -14,35 +43,35 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
         body: JSON.stringify({ id: user.uuid }),
         credentials: 'include',
       });
-      const token = await r.json();
-      console.log(token);
       return true;
     }
     return false;
   }
 
-  const Signup = async (datas: UserType[]) => {
-    if (isExistUser({datas,name,pass})) {
+  const Signup = async (datas: UserType[],name:string,pass:string) => {
+    if (!validate(name, pass)) {
+      return false;
+    }
+    if (isExistUser({ datas, name, pass })) {
       alert('already exists');
-      return;
+      return false;
     }
     createUser(name, pass);
   }
 
-  const isExistUser = ({datas,name,pass}: {datas:UserType[], name: string,pass:string}) => {
+
+  const isExistUser = ({ datas, name, pass }: { datas: UserType[], name: string, pass: string }) => {
     return datas.find((data: { name: string; pass: string; }) => data.name === name && data.pass === pass);
   }
-
-  e.preventDefault();
   const datas = await getAllUsers();
   if (authMode === "login") {
-    const res = await Login(datas);
+    const res = await Login(datas,name,pass);
     if (res) {
-      alert('login success');
+      router.push('/game');
     } else {
       alert('login failed');
     }
   } else {
-    await Signup(datas);
+    await Signup(datas,name,pass);
   }
 }

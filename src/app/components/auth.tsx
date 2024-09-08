@@ -3,14 +3,16 @@
 import { useState, FormEvent } from "react";
 import React from 'react';
 import { handleSubmit } from "../hooks/hook";
-import e from "express";
+import { useRouter } from "next/navigation";
 
 export const AuthForm= () => {
   const [name, setName] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
+  const router = useRouter();
+
   return (
-    <form className="flex flex-col items-center bg-gray-100 px-6 py-16 rounded shadow-md" onSubmit={(e:FormEvent<HTMLFormElement>) => handleSubmit(e,name,pass,authMode)}>
+    <form className="flex flex-col items-center bg-gray-100 px-6 py-16 rounded shadow-md" onSubmit={(e:FormEvent<HTMLFormElement>) => handleSubmit(e,name,pass,authMode,router)}>
       <h1 className="text-3xl font-semibold mb-6">{authMode}</h1>
       <input
         type="text"
