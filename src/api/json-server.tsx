@@ -1,8 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import { UserType } from "../types/usertype";
 
+const USERS_JSON_URL = process.env.NEXT_PUBLIC_USERS_JSON_SERVER;
 export const getAllUsers = async ():Promise<UserType[]> => {
-  const res = await fetch("http://localhost:3001/users", {
+  if (!USERS_JSON_URL) {
+    return [];
+  }
+  const res = await fetch(USERS_JSON_URL, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -12,12 +16,16 @@ export const getAllUsers = async ():Promise<UserType[]> => {
   return datas;
 }
 
-export const createUser = async (name: string, pass: string):Promise<void> => {
-  await fetch("http://localhost:3001/users", {
+export const createUser = async (name: string, pass: string):Promise<boolean> => {
+  if (!USERS_JSON_URL) {
+    return false;
+  }
+  await fetch(USERS_JSON_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ uuid: uuidv4(), name, pass }),
   });
+  return true;
 }

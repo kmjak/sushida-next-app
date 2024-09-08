@@ -2,9 +2,12 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 
-const SECRET_KEY = '0rig1nal-Typing-G4me-SECRET_keY';
+const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY
 
 export async function GET(req: NextRequest) {
+  if (!SECRET_KEY) {
+    return NextResponse.json({ message: 'server error' }, { status: 500 });
+  }
   try {
     const token = req.cookies.get('token')?.value;
     if (!token) {

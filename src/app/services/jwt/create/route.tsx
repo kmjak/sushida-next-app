@@ -3,9 +3,12 @@ import { NextResponse } from 'next/server';
 import { serialize } from 'cookie';
 import { NextRequest } from 'next/server';
 
-const SECRET_KEY = '0rig1nal-Typing-G4me-SECRET_keY';
+const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY
 
 export async function POST(req: NextRequest) {
+  if (!SECRET_KEY) {
+    return NextResponse.json({ message: 'server error' }, { status: 500 });
+  }
   try {
     const { id } = await req.json();
     const token = jwt.sign({ id }, SECRET_KEY, { expiresIn: '1h' });

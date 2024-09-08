@@ -2,6 +2,8 @@ import { UserType } from '@/types/usertype';
 import { createUser, getAllUsers } from '@/api/json-server';
 import { FormEvent } from 'react';
 
+const JWT_URL = process.env.NEXT_PUBLIC_JWT_URL;
+
 export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string, router: any) {
   e.preventDefault();
 
@@ -35,7 +37,7 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
     }
     const user = isExistUser({ datas, name, pass });
     if (user) {
-      await fetch("/services/jwt/create", {
+      await fetch(JWT_URL+"create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,6 +74,9 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
       alert('login failed');
     }
   } else {
-    await Signup(datas,name,pass);
+    const res = await Signup(datas,name,pass);
+    if (!res) {
+      alert('signup failed');
+    }
   }
 }
