@@ -1,10 +1,11 @@
 import { UserType } from '@/types/usertype';
 import { createUser, getAllUsers } from '@/api/json-server';
 import { FormEvent } from 'react';
+import { NextRouter } from 'next/router';
 
 const JWT_URL = process.env.NEXT_PUBLIC_JWT_URL;
 
-export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string, router: any) {
+export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string, router: NextRouter) {
   e.preventDefault();
 
   const validate = (name: string, pass: string) => {
@@ -50,7 +51,7 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
     return false;
   }
 
-  const Signup = async (datas: UserType[],name:string,pass:string) => {
+  const Signup = async (datas: UserType[],name:string,pass:string):Promise<boolean> => {
     if (!validate(name, pass)) {
       return false;
     }
@@ -59,6 +60,7 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
       return false;
     }
     createUser(name, pass);
+    return true;
   }
 
 
@@ -75,8 +77,9 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
     }
   } else {
     const res = await Signup(datas,name,pass);
-    if (!res) {
-      alert('signup failed');
+    if (res) {
+      return
     }
+    alert('signup failed');
   }
 }
