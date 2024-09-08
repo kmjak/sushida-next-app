@@ -1,23 +1,21 @@
+"use client";
+
+import { useState, FormEvent } from "react";
 import React from 'react';
+import { handleSubmit } from "../hooks/hook";
+import e from "express";
 
-type AuthFormProps = {
-  name: string;
-  pass: string;
-  authMode: "login" | "signup";
-  onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onPassChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onChangeAuthMode: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
-
-export const AuthForm: React.FC<AuthFormProps> = ({ name, pass,authMode, onNameChange, onPassChange, onSubmit, onChangeAuthMode }) => {
+export const AuthForm= () => {
+  const [name, setName] = useState<string>("");
+  const [pass, setPass] = useState<string>("");
+  const [authMode, setAuthMode] = useState<"login" | "signup">("login");
   return (
-    <form className="flex flex-col items-center bg-gray-100 px-6 py-16 rounded shadow-md" onSubmit={onSubmit}>
+    <form className="flex flex-col items-center bg-gray-100 px-6 py-16 rounded shadow-md" onSubmit={(e:FormEvent<HTMLFormElement>) => handleSubmit(e,name,pass,authMode)}>
       <h1 className="text-3xl font-semibold mb-6">{authMode}</h1>
       <input
         type="text"
         value={name}
-        onChange={onNameChange}
+        onChange={(e) => setName(e.target.value)}
         placeholder="name"
         className="border border-gray-300 rounded p-2 m-2 w-64"
       />
@@ -25,7 +23,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ name, pass,authMode, onNameC
         type="password"
         value={pass}
         placeholder="password"
-        onChange={onPassChange}
+        onChange={(e) => setPass(e.target.value)}
         className="border border-gray-300 rounded p-2 m-2 w-64"
       />
       <button
@@ -36,7 +34,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ name, pass,authMode, onNameC
       </button>
       <button
         type="button"
-        onClick={onChangeAuthMode}
+        onClick={() => setAuthMode(authMode === "login" ? "signup" : "login")}
         className="text-blue-500 underline"
       >
         {authMode === "login" ? "signup" : "login"}

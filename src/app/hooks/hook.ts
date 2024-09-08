@@ -1,47 +1,48 @@
-import { v4 as uuidv4 } from 'uuid';
+import { UserType } from '@/types/usertype';
+import { createUser, getAllUsers } from '@/api/json-server';
+import { FormEvent } from 'react';
 
-export function useAuth(name: string, pass: string, authMode: "login" | "signup", setName: React.Dispatch<React.SetStateAction<string>>, setPass: React.Dispatch<React.SetStateAction<string>>, setAuthMode: React.Dispatch<React.SetStateAction<"login" | "signup">>) {
-  const changeAuthMode = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setAuthMode(authMode === "login" ? "signup" : "login");
-  }
-
-  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const res = await fetch("http://localhost:3001/users", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const datas = await res.json();
-    if (authMode === "login") {
-      const user = datas.find((data: { name: string; pass: string; }) => data.name === name && data.pass === pass);
-      if (user) {
-        const r = await fetch("/services/jwt/create", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: user.uuid }),
-          credentials: 'include',
-        });
-        const token = await r.json();
-        console.log(token);
-      }
-    } else {
-      if (datas.find((data: { name: string; }) => data.name === name)) {
-        alert('already exists');
-        return;
-      }
-      await fetch("http://localhost:3001/users", {
+export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string) {
+  const Login = async (datas: UserType[]) => {
+    const user = isExistUser({datas,name,pass});
+    if (user) {
+      const r = await fetch("/services/jwt/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ uuid: uuidv4(), name, pass }),
+        body: JSON.stringify({ id: user.uuid }),
+        credentials: 'include',
       });
+      const token = await r.json();
+      console.log(token);
+      return true;
     }
+    return false;
   }
-  return { submit, changeAuthMode };
+
+  const Signup = async (datas: UserType[]) => {
+    if (isExistUser({datas,name,pass})) {
+      alert('already exists');
+      return;
+    }
+    createUser(name, pass);
+  }
+
+  const isExistUser = ({datas,name,pass}: {datas:UserType[], name: string,pass:string}) => {
+    return datas.find((data: { name: string; pass: string; }) => data.name === name && data.pass === pass);
+  }
+
+  e.preventDefault();
+  const datas = await getAllUsers();
+  if (authMode === "login") {
+    const res = await Login(datas);
+    if (res) {
+      alert('login success');
+    } else {
+      alert('login failed');
+    }
+  } else {
+    await Signup(datas);
+  }
 }
