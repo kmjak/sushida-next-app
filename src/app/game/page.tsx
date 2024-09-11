@@ -1,21 +1,6 @@
-"use client"
 import Link from "next/link";
-import { useEffect } from "react";
-
-const JWT_URL = process.env.NEXT_PUBLIC_JWT_URL;
 
 export default function Page() {
-
-  useEffect(() => {
-    const fetchToken = async () => {
-      const token = await fetch(JWT_URL+"get", {
-        method: "GET",
-        credentials: 'include',
-      });
-      console.log(token);
-    }
-    fetchToken();
-  }, []);
 
   return (
     <div className="h-full container mx-auto py-20 flex flex-col justify-center items-center gap-12">

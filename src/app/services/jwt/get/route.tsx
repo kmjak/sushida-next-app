@@ -1,21 +1,21 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
+import { jwtVerify } from 'jose';
 
 const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY
 
 export async function GET(req: NextRequest) {
-  if (!SECRET_KEY) {
-    return NextResponse.json({ message: 'server error' }, { status: 500 });
-  }
   try {
     const token = req.cookies.get('token')?.value;
     if (!token) {
-      return NextResponse.json({ message: 'トークンがありません' }, { status: 403 });
+      throw new Error('No token found');
     }
-    const decoded = jwt.verify(token, SECRET_KEY) as JwtPayload;
-    return NextResponse.json({ id: decoded.id });
-  } catch (err) {
-    return NextResponse.json({ message: 'トークンが無効です' }, { status: 401 });
+
+    const { payload } = await jwtVerify(token, new TextEncoder().encode(SECRET_KEY));
+    console.log('Token payload:', payload.id);
+    if(!payload.id) {
+      throw new Error('Invalid token');
+    }
+  } catch (error) {
+    console.error('Token verification failed:', error);
   }
 }
