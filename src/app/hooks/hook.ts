@@ -71,7 +71,7 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
   if (authMode === "login") {
     const res = await Login(datas,name,pass);
     if (res) {
-      router.push('/game');
+      router.push('/verified');
     } else {
       alert('login failed');
     }

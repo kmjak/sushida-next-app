@@ -15,6 +15,13 @@ export async function GET(req: NextRequest) {
     if(!payload.id) {
       throw new Error('Invalid token');
     }
+    return {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: 'verified' }),
+    };
   } catch (error) {
     console.error('Token verification failed:', error);
   }

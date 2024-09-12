@@ -18,16 +18,20 @@ export const metadata: Metadata = {
   description: "typing game with next",
 };
 
-const Header = () => (
-  <header className="flex justify-center py-4 bg-indigo-300 text-white h-16">
-    <h1 className="text-3xl font-bold">Typing Game</h1>
-  </header>
-);
-const Footer = () => (
-  <footer className="flex justify-center py-4 bg-indigo-300 text-white h-16">
-    <p>© 2024 Typing Game</p>
-  </footer>
-);
+const Header = () => {
+  return (
+    <header className="flex justify-center py-4 bg-indigo-300 text-white h-16">
+      <h1 className="text-3xl font-bold">Typing Game</h1>
+    </header>
+  );
+};
+const Footer = () => {
+  return (
+    <footer className="flex justify-center py-4 bg-indigo-300 text-white h-16">
+      <p>© 2024 Typing Game</p>
+    </footer>
+  )
+};
 
 export default function RootLayout({
   children,
