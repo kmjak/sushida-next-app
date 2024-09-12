@@ -1,32 +1,27 @@
 import { UserType } from '@/types/usertype';
 import { createUser, getAllUsers } from '@/api/json-server';
 import { FormEvent } from 'react';
-import { NextRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const JWT_URL = process.env.NEXT_PUBLIC_JWT_URL;
 
-export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string, router: NextRouter) {
+export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, pass: string, authMode: string, router: ReturnType<typeof useRouter> ) {
   e.preventDefault();
 
   const validate = (name: string, pass: string) => {
     if (!name || !pass) {
-      alert("name or pass is empty");
       return false;
     }
     if(name.length < 1 || pass.length < 4){
-      alert("name or pass is too short");
       return false;
     }
     if(name.length > 20 || pass.length > 20){
-      alert("name or pass is too long");
       return false;
     }
     if(name.match(/[^A-Za-z0-9@_-]/)){
-      alert("name is invalid");
       return false;
     }
     if(pass.match(/[^A-Za-z0-9@_-]/)){
-      alert("pass is invalid");
       return false;
     }
     return true;
@@ -60,6 +55,7 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
       return false;
     }
     createUser(name, pass);
+    alert('signup success');
     return true;
   }
 
@@ -67,6 +63,7 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
   const isExistUser = ({ datas, name, pass }: { datas: UserType[], name: string, pass: string }) => {
     return datas.find((data: { name: string; pass: string; }) => data.name === name && data.pass === pass);
   }
+
   const datas = await getAllUsers();
   if (authMode === "login") {
     const res = await Login(datas,name,pass);
@@ -76,10 +73,6 @@ export async function handleSubmit(e: FormEvent<HTMLFormElement>, name: string, 
       alert('login failed');
     }
   } else {
-    const res = await Signup(datas,name,pass);
-    if (res) {
-      return
-    }
-    alert('signup failed');
+    await Signup(datas,name,pass);
   }
 }

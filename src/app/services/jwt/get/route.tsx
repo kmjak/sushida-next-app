@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
 const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY
@@ -6,23 +6,14 @@ const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY
 export async function GET(req: NextRequest) {
   try {
     const token = req.cookies.get('token')?.value;
-    if (!token) {
-      throw new Error('No token found');
-    }
 
-    const { payload } = await jwtVerify(token, new TextEncoder().encode(SECRET_KEY));
-    console.log('Token payload:', payload.id);
+    const { payload } = await jwtVerify(token!, new TextEncoder().encode(SECRET_KEY));
     if(!payload.id) {
-      throw new Error('Invalid token');
+      return NextResponse.json({ error: 'Token verification failed' }, { status: 200 });
     }
-    return {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message: 'verified' }),
-    };
+    return NextResponse.json({ id: payload.id });
   } catch (error) {
     console.error('Token verification failed:', error);
+    return NextResponse.json({ error: 'Token verification failed' }, { status: 200 });
   }
 }

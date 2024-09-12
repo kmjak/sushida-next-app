@@ -11,6 +11,12 @@
       "uuid": "68d6177a-2e84-4ce5-98e8-36845a9c8dff",
       "name": "user01",
       "pass": "pass@123"
+    },
+    {
+      "id": "1abc",
+      "uuid": "144f2ef9-5234-41db-9140-ba1dcdd9f84f",
+      "name": "test",
+      "pass": "test@123"
     }
   ]
 }

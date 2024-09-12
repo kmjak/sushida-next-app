@@ -32,6 +32,6 @@ export async function POST(req: NextRequest) {
     return response;
   } catch (error) {
     console.error('Error during request processing:', error);
-    return NextResponse.json({ message: 'リクエスト処理中にエラーが発生しました' }, { status: 500 });
+    return NextResponse.json({ message: 'リクエスト処理中にエラーが発生しました' });
   }
 }
