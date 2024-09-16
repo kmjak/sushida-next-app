@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState, useRef } from 'react';
-import { Words } from '../words';
+import { Words } from '@/domain/word/words';
 import { WordType } from '@/shared/types/words';
 import { TimeComponent } from './Time';
 import { TypingFormComponent } from './TypingForm';

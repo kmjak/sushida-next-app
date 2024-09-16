@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
-## Getting Started
+# タイピングゲームのセットアップ手順
 
-First, run the development server:
+## 1. 必要なパッケージのインストールとサーバーの起動
+
+まずは、プロジェクトをクローンし、必要なパッケージをインストールしてください。次に、開発サーバーと`json-server`を起動します。
+
+```bash
+npm install
+npm run dev
+npm run json-server
+```
+
+---
+
+## 2. `.env.local` の設定
+
+プロジェクトルート (`typing-game-with-next/`) に `.env.local` ファイルを作成し、以下の内容を記入してください。
+なお、`""`で囲まれている部分は、それぞれの環境に応じて設定してください。
+
+```plaintext
+NEXT_PUBLIC_JWT_URL=http://localhost:"Next.jsのポート番号"/services/jwt/
+NEXT_PUBLIC_USERS_JSON_SERVER=http://localhost:"json-serverのポート番号"/users
+NEXT_PUBLIC_JWT_SECRET_KEY="オリジナルのsecret key"
+```
+
+### **例**
+
+Next.js のURLが `localhost:3000/` 、 JSON-ServerのURLが`localhost:3001/`の場合、設定ファイルは以下のようになります:
+
+```plaintext
+NEXT_PUBLIC_JWT_URL=http://localhost:3000/services/jwt/
+NEXT_PUBLIC_USERS_JSON_SERVER=http://localhost:3001/users
+NEXT_PUBLIC_JWT_SECRET_KEY=TEST-Secret-Key
+```
+
+その後、開発サーバーと`json-server`を起動して環境が正しく動作していることを確認します。
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+> next dev
+
+  ▲ Next.js 14.2.8
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+npm run json-server
+> typing-next-app@0.1.0 json-server
+> json-server --watch src/json-server/users.json --port 3001
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 3. サインアップとログイン
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`http://localhost:3000` にアクセスし、以下の条件に従ってサインアップとログインを行ってください。
 
-## Learn More
+- **アカウント名**: 1文字以上19文字以下で、英数字および `@`、`_`、`-` が使用可能。
+- **パスワード**: 4文字以上19文字以下で、英数字および `@`、`_`、`-` が使用可能。
 
-To learn more about Next.js, take a look at the following resources:
+> **注意**: ユーザー認証なしではゲームをプレイできません。必ずログインしてください。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+認証されていない場合、`http://localhost:3000/verified/` にアクセスしようとすると、`http://localhost:3000/` にリダイレクトされます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 4. ゲームのプレイ
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ログインに成功すると、`http://localhost:3000/verified/` にアクセスできるようになり、実際にゲームをプレイできるようになります。
+
+ゲームで出題されるワードは、`src/domain/word/words.ts` ファイルに記載されています。
+自作の問題を追加したい場合は、このファイルを参考にして、単語リストを変更してください。
+
+---
+
+## 5. ログアウト・ユーザーの切り替え
+
+ログアウト、または別のユーザーに切り替えたい場合は、`http://localhost:3000/` にアクセスし、`logout` を選択してください。これにより、認証画面に戻ります。
+
+---
+
+### ゲームセットアップのサマリー
+
+- パッケージのインストール: `npm install`
+- 開発サーバー起動: `npm run dev`
+- JSONサーバー起動: `npm run json-server`
+- `.env.local` 設定: 各自の環境に合わせて設定
+- サインアップとログインを行い、ゲーム開始
+
+---
+
+これで、タイピングゲームのセットアップと操作方法について完了です。楽しんでプレイしてください！
