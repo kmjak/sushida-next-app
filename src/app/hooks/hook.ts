@@ -1,4 +1,4 @@
-import { UserType } from '@/types/usertype';
+import { UserType } from '@/shared/types/usertype';
 import { createUser, getAllUsers } from '@/api/json-server';
 import { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';

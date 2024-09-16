@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import React from 'react';
 import { useRouter } from "next/navigation";
-import { UserType } from "@/types/usertype";
+import { UserType } from "@/shared/types/usertype";
 import { getAllUsers } from "@/api/json-server";
 import { AuthedComponent } from "./Authed";
 import { AuthFormComponent } from "./AuthForm";

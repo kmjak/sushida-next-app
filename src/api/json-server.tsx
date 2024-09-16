@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { UserType } from "../types/usertype";
+import { UserType } from "../shared/types/usertype";
 
 const USERS_JSON_URL = process.env.NEXT_PUBLIC_USERS_JSON_SERVER;
 export const getAllUsers = async ():Promise<UserType[]> => {

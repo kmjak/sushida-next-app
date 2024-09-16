@@ -1,11 +1,12 @@
 import { FormEvent } from "react";
 import { handleSubmit } from "../hooks/hook";
+import { useRouter } from "next/navigation";
 
 interface AuthFormProps {
   name: string;
   pass: string;
   authMode: string;
-  router: any;
+  router: ReturnType<typeof useRouter>;
   setName: (name: string) => void;
   setPass: (pass: string) => void;
   setAuthMode: (authMode: "login" | "signup") => void;

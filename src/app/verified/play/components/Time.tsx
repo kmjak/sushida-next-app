@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 interface TimeComponentProps {
   timerRef: React.MutableRefObject<number | null>;
@@ -7,7 +7,12 @@ interface TimeComponentProps {
   maxTime: number;
 }
 
-export const TimeComponent = ({timerRef,timeLeft,setTimeLeft,maxTime}:TimeComponentProps) => {
+export const TimeComponent = ({
+  timerRef,
+  timeLeft,
+  setTimeLeft,
+  maxTime,
+}: TimeComponentProps) => {
   useEffect(() => {
     const startTime = Date.now();
     const updateTimer = () => {
@@ -27,11 +32,11 @@ export const TimeComponent = ({timerRef,timeLeft,setTimeLeft,maxTime}:TimeCompon
         cancelAnimationFrame(timerRef.current);
       }
     };
-  }, []);
+  }, [maxTime, setTimeLeft, timerRef]);
 
   const progressBarWidth = (timeLeft / maxTime) * 100;
-  const barColor = timeLeft >= 60 ? "blue" : timeLeft >= 30 ? "yellow" : "red";
-
+  const barColor =
+    timeLeft >= 60 ? "bg-blue-500" : timeLeft >= 30 ? "bg-yellow-500" : "bg-red-500";
   return (
     <>
       <h1 className="text-4xl font-semibold text-center my-5">
@@ -39,13 +44,13 @@ export const TimeComponent = ({timerRef,timeLeft,setTimeLeft,maxTime}:TimeCompon
       </h1>
       <div className="w-full max-w-lg h-2 bg-gray-200 rounded">
         <div
-          className={`h-full rounded bg-${barColor}-500`}
+          className={`h-full rounded ${barColor}`}
           style={{
             width: `${progressBarWidth}%`,
-            transition: 'width 0.1s linear'
+            transition: "width 0.1s linear",
           }}
         />
       </div>
     </>
   );
-}
+};
