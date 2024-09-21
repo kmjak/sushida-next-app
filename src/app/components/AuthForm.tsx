@@ -1,20 +1,29 @@
 import { FormEvent } from "react";
-import { handleSubmit } from "../hooks/hook";
-import { useRouter } from "next/navigation";
 
 interface AuthFormProps {
   name: string;
   pass: string;
   authMode: string;
-  router: ReturnType<typeof useRouter>;
   setName: (name: string) => void;
   setPass: (pass: string) => void;
   setAuthMode: (authMode: "login" | "signup") => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-export const AuthFormComponent = ({name,pass,authMode,router,setName,setPass,setAuthMode}:AuthFormProps) => {
+export const AuthFormComponent = ({
+  name,
+  pass,
+  authMode,
+  setName,
+  setPass,
+  setAuthMode,
+  handleSubmit
+} : AuthFormProps ) => {
   return(
-    <form className="flex flex-col items-center bg-gray-100 px-6 py-16 rounded shadow-md" onSubmit={(e:FormEvent<HTMLFormElement>) => handleSubmit(e,name,pass,authMode,router)}>
+    <form
+      className="flex flex-col items-center bg-gray-100 px-6 py-16 rounded shadow-md"
+      onSubmit={(e:FormEvent<HTMLFormElement>) => handleSubmit(e)}
+    >
       <h1 className="text-3xl font-semibold mb-6">{authMode}</h1>
       <input
         type="text"

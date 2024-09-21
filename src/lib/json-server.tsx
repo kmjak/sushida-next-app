@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import { UserType } from "../shared/types/usertype";
+import { CreateUserProps } from '@/shared/types/CreateUser';
 
 const USERS_JSON_URL = process.env.NEXT_PUBLIC_USERS_JSON_SERVER;
-export const getAllUsers = async ():Promise<UserType[]> => {
+export const getAllUsers = async () : Promise<UserType[]> => {
   if (!USERS_JSON_URL) {
     return [];
   }
@@ -16,7 +17,7 @@ export const getAllUsers = async ():Promise<UserType[]> => {
   return datas;
 }
 
-export const createUser = async (name: string, pass: string):Promise<boolean> => {
+export const createUser = async ({name, pass}:CreateUserProps):Promise<boolean> => {
   if (!USERS_JSON_URL) {
     return false;
   }

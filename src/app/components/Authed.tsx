@@ -7,7 +7,11 @@ interface AuthedComponentProps {
   handleLogout: () => void;
 }
 
-export const AuthedComponent = ({logindata,router,handleLogout}:AuthedComponentProps) => {
+export const AuthedComponent = ({
+  logindata,
+  router,
+  handleLogout
+} : AuthedComponentProps ) => {
   return (
     <div className="flex flex-col items-center">
     <h1 className="text-3xl font-semibold text-center">You are logged in as {logindata?.name}</h1>

@@ -12,7 +12,7 @@ export async function DELETE() {
       path: '/',
     });
 
-    const response = NextResponse.json({ message: 'ログイン成功' });
+    const response = NextResponse.json({ message: 'ログアウト成功' });
     response.headers.set('Set-Cookie', cookie);
     return response;
   } catch (error) {
