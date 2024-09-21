@@ -5,11 +5,14 @@ interface ProcessKeyDownProps {
   shuffledWords: WordType[];
   listIndex: number;
   wordIndex: number;
+  totalCorrect: number;
+  totalIncorrect: number;
   setListIndex: (index: number) => void;
   setInputValue: (update: (prev: string) => string) => void;
   setWordIndex: (index: number) => void;
   setTotalCorrect: (update: (prev: number) => number) => void;
   setTotalIncorrect: (update: (prev: number) => number) => void;
+  setAccuracyRate: (number:number) => void;
 }
 
 export const processKeyDown = ({
@@ -21,7 +24,7 @@ export const processKeyDown = ({
   setInputValue,
   setWordIndex,
   setTotalCorrect,
-  setTotalIncorrect
+  setTotalIncorrect,
 } : ProcessKeyDownProps ) => {
   const key = e.key;
   const currentChar = shuffledWords[listIndex]?.alphabet[wordIndex];

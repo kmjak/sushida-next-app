@@ -8,9 +8,10 @@ export const TypingComponent = () => {
   const {
     shuffledWords,
     listIndex,
-    inputValue,
     totalCorrect,
     totalIncorrect,
+    accuracyRate,
+    wordIndex,
   } = useTyping();
 
   return (
@@ -19,9 +20,10 @@ export const TypingComponent = () => {
       <div>
         <TypingFormComponent
           {...shuffledWords[listIndex]}
-          inputValue={inputValue}
           totalCorrect={totalCorrect}
           totalIncorrect={totalIncorrect}
+          accuracyRate={accuracyRate}
+          wordIndex={wordIndex}
         />
       </div>
     </div>

@@ -31,10 +31,7 @@ export const useTimer = () => {
     };
   }, [maxTime, setTimeLeft, timerRef]);
   return {
-    maxTime,
-    timerRef,
     timeLeft,
-    setTimeLeft,
     progressBarWidth,
     barColor,
   };

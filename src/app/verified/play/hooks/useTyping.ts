@@ -10,6 +10,7 @@ export const useTyping = () => {
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [totalCorrect, setTotalCorrect] = useState<number>(0);
   const [totalIncorrect, setTotalIncorrect] = useState<number>(0);
+  const [accuracyRate, setAccuracyRate] = useState<number>(100);
 
   const shuffleArray = (array: WordType[]) => {
     const shuffled = [...array];
@@ -31,28 +32,35 @@ export const useTyping = () => {
       shuffledWords,
       listIndex,
       wordIndex,
+      totalCorrect,
+      totalIncorrect,
       setListIndex,
       setInputValue,
       setWordIndex,
       setTotalCorrect,
       setTotalIncorrect,
+      setAccuracyRate,
     });
-  }, [shuffledWords, listIndex, wordIndex]);
+  }, [shuffledWords, listIndex, wordIndex, totalCorrect, totalIncorrect]);
 
   useEffect(() => {
+    if(totalCorrect + totalIncorrect != 0) {
+      setAccuracyRate(Number(((Math.round(totalCorrect / (totalCorrect + totalIncorrect) * 1000)) / 10).toFixed(1)));
+
+    }
     document.addEventListener("keydown", handleKeyDown);
-    return () => {
+  return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleKeyDown]);
+  }, [handleKeyDown, totalCorrect, totalIncorrect]);
 
   return {
     shuffledWords,
     listIndex,
-    setListIndex,
-    handleKeyDown,
+    inputValue,
     totalCorrect,
     totalIncorrect,
-    inputValue,
+    accuracyRate,
+    wordIndex,
   };
 }
