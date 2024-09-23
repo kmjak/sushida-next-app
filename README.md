@@ -4,7 +4,7 @@
 
 ## 1. 必要なパッケージのインストールとサーバーの起動
 
-まずは、プロジェクトをクローンし、必要なパッケージをインストールしてください。次に、開発サーバーと`json-server`を起動します。
+まずは、プロジェクトをクローンし、必要なパッケージをインストールしてください。次に、開発サーバーと`users`を起動します。
 
 ```bash
 npm install
@@ -27,7 +27,7 @@ NEXT_PUBLIC_JWT_SECRET_KEY="オリジナルのsecret key"
 
 ### **例**
 
-Next.js のURLが `localhost:3000/` 、 JSON-ServerのURLが`localhost:3001/`の場合、設定ファイルは以下のようになります:
+Next.js のURLが `localhost:3000/` 、 npm run usersのURLが`localhost:3001/`の場合、設定ファイルは以下のようになります:
 
 ```plaintext
 NEXT_PUBLIC_JWT_URL=http://localhost:3000/services/jwt/
@@ -35,7 +35,7 @@ NEXT_PUBLIC_USERS_JSON_SERVER=http://localhost:3001/users
 NEXT_PUBLIC_JWT_SECRET_KEY=TEST-Secret-Key
 ```
 
-その後、開発サーバーと`json-server`を起動して環境が正しく動作していることを確認します。
+その後、開発サーバーと`npm run users`を起動して環境が正しく動作していることを確認します。
 
 ```bash
 npm run dev
@@ -85,7 +85,7 @@ npm run users
 
 - パッケージのインストール: `npm install`
 - 開発サーバー起動: `npm run dev`
-- JSONサーバー起動: `npm run json-server`
+- users JSONサーバー起動: `npm run users`
 - `.env.local` 設定: 各自の環境に合わせて設定
 - サインアップとログインを行い、ゲーム開始
 
