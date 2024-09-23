@@ -21,7 +21,7 @@ npm run users
 
 ```plaintext
 NEXT_PUBLIC_JWT_URL=http://localhost:"Next.jsのポート番号"/services/jwt/
-NEXT_PUBLIC_USERS_JSON_SERVER=http://localhost:"json-serverのポート番号"/users
+NEXT_PUBLIC_USERS_JSON_SERVER=http://localhost:"npm run usersのポート番号"/users
 NEXT_PUBLIC_JWT_SECRET_KEY="オリジナルのsecret key"
 ```
 
@@ -45,7 +45,7 @@ npm run dev
   - Local:        http://localhost:3000
   - Environments: .env.local
 
-npm run json-server
+npm run users
 > typing-next-app@0.1.0 json-server
 > json-server --watch src/json-server/users.json --port 3001
 ```
