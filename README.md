@@ -9,7 +9,7 @@
 ```bash
 npm install
 npm run dev
-npm run json-server
+npm run users
 ```
 
 ---
