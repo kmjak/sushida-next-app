@@ -1,8 +1,6 @@
 import { WordType } from "@/shared/types/words";
 
 interface TypingFormProps extends WordType {
-  totalCorrect: number;
-  totalIncorrect: number;
   accuracyRate: number;
   wordIndex: number;
 }
@@ -11,8 +9,6 @@ export const TypingFormComponent = ({
   word,
   id,
   alphabet,
-  totalCorrect,
-  totalIncorrect,
   accuracyRate,
   wordIndex,
 } : TypingFormProps ) => {
@@ -35,8 +31,6 @@ export const TypingFormComponent = ({
         ))}
       </div>
       <p>正確率 / {accuracyRate}%</p>
-      <p className="text-base">Correct: {totalCorrect}</p>
-      <p className="text-base">Incorrect: {totalIncorrect}</p>
     </div>
   );
 };

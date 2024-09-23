@@ -19,6 +19,7 @@ export const useTimer = () => {
 
       if (newTimeLeft > 0) {
         timerRef.current = requestAnimationFrame(updateTimer);
+      }else{
       }
     };
 
@@ -30,9 +31,13 @@ export const useTimer = () => {
       }
     };
   }, [maxTime, setTimeLeft, timerRef]);
+
+  const handleTimeUp = (accuracyRate:number) => {
+  }
   return {
     timeLeft,
     progressBarWidth,
     barColor,
+    handleTimeUp,
   };
 }

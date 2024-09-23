@@ -2,10 +2,10 @@ import { UserType } from '@/shared/types/usertype';
 import { createUser, getAllUsers } from '@/lib/json-server';
 import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getJWT } from '../usecase/GetJWT';
-import { signup } from '../usecase/Signup';
-import { login } from '../usecase/Login';
-import { logout } from '../usecase/Logout';
+import { getJWT } from '../usecase/getJWT';
+import { signup } from '../usecase/signup';
+import { login } from '../usecase/login';
+import { logout } from '../usecase/logout';
 
 export const useAuth = () => {
   const router = useRouter();

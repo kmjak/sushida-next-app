@@ -1,11 +1,16 @@
 import { useTimer } from "../hooks/useTimer";
 
-export const TimeComponent = () => {
+export const TimeComponent = ({accuracyRate}:{accuracyRate:number}) => {
   const {
     timeLeft,
     progressBarWidth,
     barColor,
+    handleTimeUp,
   } = useTimer();
+
+  if(timeLeft === 0){
+    handleTimeUp(accuracyRate);
+  }
 
   return (
     <>

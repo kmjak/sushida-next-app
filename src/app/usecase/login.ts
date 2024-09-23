@@ -1,7 +1,7 @@
 import { UserType } from "@/shared/types/usertype";
 import { isExistUser } from "@/shared/utils/isExistUser";
 import { validate } from "@/shared/utils/validate";
-import { createJWT } from "./CreateJWT";
+import { createJWT } from "./createJWT";
 
 
 interface LoginProps {

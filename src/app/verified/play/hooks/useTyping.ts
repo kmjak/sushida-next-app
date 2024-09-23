@@ -2,6 +2,7 @@ import { Words } from "@/domain/word/words";
 import { WordType } from "@/shared/types/words";
 import { useCallback, useEffect, useState } from "react";
 import { processKeyDown } from "../usecase/processKeyDown";
+import { MissedAlphabet } from "@/shared/types/MissedAlphabets";
 
 export const useTyping = () => {
   const [shuffledWords, setShuffledWords] = useState<WordType[]>([]);
@@ -11,6 +12,7 @@ export const useTyping = () => {
   const [totalCorrect, setTotalCorrect] = useState<number>(0);
   const [totalIncorrect, setTotalIncorrect] = useState<number>(0);
   const [accuracyRate, setAccuracyRate] = useState<number>(100);
+  const [missedAlphabet, setMissedAlphabet] = useState<MissedAlphabet[]>([]);
 
   const shuffleArray = (array: WordType[]) => {
     const shuffled = [...array];
@@ -34,19 +36,19 @@ export const useTyping = () => {
       wordIndex,
       totalCorrect,
       totalIncorrect,
+      missedAlphabet,
       setListIndex,
       setInputValue,
       setWordIndex,
       setTotalCorrect,
       setTotalIncorrect,
-      setAccuracyRate,
+      setMissedAlphabet,
     });
-  }, [shuffledWords, listIndex, wordIndex, totalCorrect, totalIncorrect]);
+  }, [shuffledWords, listIndex, wordIndex, totalCorrect, totalIncorrect, missedAlphabet]);
 
   useEffect(() => {
     if(totalCorrect + totalIncorrect != 0) {
       setAccuracyRate(Number(((Math.round(totalCorrect / (totalCorrect + totalIncorrect) * 1000)) / 10).toFixed(1)));
-
     }
     document.addEventListener("keydown", handleKeyDown);
   return () => {
