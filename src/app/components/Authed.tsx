@@ -1,4 +1,4 @@
-import { UserType } from "@/shared/types/usertype";
+import { UserType } from '@/shared/types/Usertype';
 import { useRouter } from 'next/navigation';
 
 interface AuthedComponentProps {

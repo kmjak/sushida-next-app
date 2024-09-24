@@ -1,8 +1,8 @@
 import { Words } from "@/domain/word/words";
-import { WordType } from "@/shared/types/words";
 import { useCallback, useEffect, useState } from "react";
 import { processKeyDown } from "../usecase/processKeyDown";
 import { MissedAlphabet } from "@/shared/types/MissedAlphabets";
+import { WordType } from "@/shared/types/Words";
 
 export const useTyping = () => {
   const [shuffledWords, setShuffledWords] = useState<WordType[]>([]);
@@ -64,5 +64,6 @@ export const useTyping = () => {
     totalIncorrect,
     accuracyRate,
     wordIndex,
+    missedAlphabet,
   };
 }

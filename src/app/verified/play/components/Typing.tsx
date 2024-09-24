@@ -10,12 +10,18 @@ export const TypingComponent = () => {
     listIndex,
     accuracyRate,
     wordIndex,
+    totalIncorrect,
+    totalCorrect,
+    missedAlphabet,
   } = useTyping();
 
   return (
     <div className="flex flex-col items-center">
       <TimeComponent
         accuracyRate={accuracyRate}
+        totalCorrect={totalCorrect}
+        totalIncorrect={totalIncorrect}
+        missedAlphabet={missedAlphabet}
       />
       <div>
         <TypingFormComponent

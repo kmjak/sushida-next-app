@@ -1,4 +1,4 @@
-import { UserType } from "./usertype";
+import { UserType } from "./Usertype";
 
 export interface IsExistUserProps {
   datas: UserType[];

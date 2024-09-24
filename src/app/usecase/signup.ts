@@ -1,5 +1,5 @@
 import { CreateUserProps } from "@/shared/types/CreateUser";
-import { UserType } from "@/shared/types/usertype";
+import { UserType } from "@/shared/types/Usertype";
 import { isExistUser } from "@/shared/utils/isExistUser";
 import { validate } from "@/shared/utils/validate";
 

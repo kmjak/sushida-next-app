@@ -1,6 +1,17 @@
+import { useRouter } from "next/navigation";
 import { useTimer } from "../hooks/useTimer";
+import { TimeUp } from "@/shared/types/TimeUp";
+import { useJWT } from "../hooks/useJWT";
+import { useEffect } from "react";
 
-export const TimeComponent = ({accuracyRate}:{accuracyRate:number}) => {
+
+export const TimeComponent = ({
+  accuracyRate,
+  totalCorrect,
+  totalIncorrect,
+  missedAlphabet,
+} : TimeUp ) => {
+  const router = useRouter();
   const {
     timeLeft,
     progressBarWidth,
@@ -8,9 +19,26 @@ export const TimeComponent = ({accuracyRate}:{accuracyRate:number}) => {
     handleTimeUp,
   } = useTimer();
 
-  if(timeLeft === 0){
-    handleTimeUp(accuracyRate);
+  const { handleGetJWT } = useJWT();
+
+  useEffect(() => {
+    const processTimeUp = async () => {
+      if(timeLeft === 0){
+        const userUUID = await handleGetJWT();
+        if(userUUID == null) return;
+        const res = await handleTimeUp({
+          userUUID,
+          accuracyRate,
+          totalCorrect,
+          totalIncorrect,
+          missedAlphabet,
+        });
+        router.push(`/verified/result/${res}`);
+      }
+    }
+    processTimeUp();
   }
+  ,[timeLeft])
 
   return (
     <>

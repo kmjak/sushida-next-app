@@ -1,5 +1,5 @@
 import { MissedAlphabet } from "@/shared/types/MissedAlphabets";
-import { WordType } from "@/shared/types/words";
+import { WordType } from "@/shared/types/Words";
 
 interface ProcessKeyDownProps {
   e: KeyboardEvent;
@@ -43,11 +43,11 @@ export const processKeyDown = ({
     }
   } else {
     setTotalIncorrect(prev => prev + 1);
-    const missed = missedAlphabet.find((alphabet) => alphabet.alphabet == key);
+    const missed = missedAlphabet.find((alphabet) => alphabet.alphabet == currentChar);
     if (missed) {
       missed.counts++;
     }else{
-      setMissedAlphabet([...missedAlphabet, {alphabet: key, counts: 1}]);
+      setMissedAlphabet([...missedAlphabet, {alphabet: currentChar, counts: 1}]);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { WordType } from "@/shared/types/words";
+import { WordType } from "@/shared/types/Words";
 
 interface TypingFormProps extends WordType {
   accuracyRate: number;

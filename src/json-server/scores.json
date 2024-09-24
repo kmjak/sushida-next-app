@@ -1,20 +1,4 @@
 {
-  "scores":[
-    {
-      "scoreId": 1,
-      "userUUID": 1,
-      "correct": 10,
-      "incorrect": 0,
-      "missedAlphabet": [
-        {
-          "alphabet": "a",
-          "count": 2
-        },
-        {
-          "alphabet": "j",
-          "count": 1
-        }
-      ]
-    }
+  "scores": [
   ]
 }

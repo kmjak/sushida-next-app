@@ -1,11 +1,11 @@
-import { UserType } from '@/shared/types/usertype';
-import { createUser, getAllUsers } from '@/lib/json-server';
 import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getJWT } from '../usecase/getJWT';
 import { signup } from '../usecase/signup';
 import { login } from '../usecase/login';
 import { logout } from '../usecase/logout';
+import { UserType } from '@/shared/types/Usertype';
+import { userServices } from '@/lib/users';
 
 export const useAuth = () => {
   const router = useRouter();
@@ -15,6 +15,7 @@ export const useAuth = () => {
   const [isAuthed, setIsAuthed] = useState<boolean | null>(null);
   const [logindata, setLogindata] = useState<UserType>();
   const [users, setUsers] = useState<UserType[]>([]);
+
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -35,6 +36,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
+      const { getAllUsers } = userServices();
       const datas = await getAllUsers()
       setUsers(datas);
     }
@@ -52,6 +54,7 @@ export const useAuth = () => {
   }
 
   const handleSignup = async () : Promise<void> => {
+    const { createUser } = userServices();
     signup({name,pass,users,createUser});
   }
 
