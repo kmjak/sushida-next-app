@@ -13,6 +13,7 @@ export const useTyping = () => {
   const [totalIncorrect, setTotalIncorrect] = useState<number>(0);
   const [accuracyRate, setAccuracyRate] = useState<number>(100);
   const [missedAlphabet, setMissedAlphabet] = useState<MissedAlphabet[]>([]);
+  const [isTypingStarted, setIsTypingStarted] = useState<boolean>(false);
 
   const shuffleArray = (array: WordType[]) => {
     const shuffled = [...array];
@@ -29,6 +30,8 @@ export const useTyping = () => {
   }, []);
 
   const handleKeyDown = useCallback((e:KeyboardEvent) => {
+    if (!isTypingStarted) return;
+
     processKeyDown({
       e,
       shuffledWords,
@@ -44,17 +47,21 @@ export const useTyping = () => {
       setTotalIncorrect,
       setMissedAlphabet,
     });
-  }, [shuffledWords, listIndex, wordIndex, totalCorrect, totalIncorrect, missedAlphabet]);
+  }, [shuffledWords, listIndex, wordIndex, totalCorrect, totalIncorrect, missedAlphabet, isTypingStarted]);
 
   useEffect(() => {
     if(totalCorrect + totalIncorrect != 0) {
       setAccuracyRate(Number(((Math.round(totalCorrect / (totalCorrect + totalIncorrect) * 1000)) / 10).toFixed(1)));
     }
     document.addEventListener("keydown", handleKeyDown);
-  return () => {
+    return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [handleKeyDown, totalCorrect, totalIncorrect]);
+
+  const startTyping = useCallback(() => {
+    setIsTypingStarted(true);
+  }, []);
 
   return {
     shuffledWords,
@@ -65,5 +72,6 @@ export const useTyping = () => {
     accuracyRate,
     wordIndex,
     missedAlphabet,
+    startTyping,
   };
 }

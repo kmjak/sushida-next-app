@@ -170,6 +170,73 @@
         }
       ],
       "accuracyRate": 48.1
+    },
+    {
+      "id": "dbd1",
+      "scoreID": "245b7109-d31e-4159-9c8f-cd3b58c9a689",
+      "userUUID": "82542f82-5e1e-4a41-8e76-3ff3d89833ce",
+      "score": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "missedAlphabet": [],
+      "accuracyRate": 100
+    },
+    {
+      "id": "6c0a",
+      "scoreID": "060ea6b2-db60-40e4-aa0e-4075dd88905a",
+      "userUUID": "82542f82-5e1e-4a41-8e76-3ff3d89833ce",
+      "score": 21,
+      "correct": 6,
+      "incorrect": 0,
+      "missedAlphabet": [],
+      "accuracyRate": 100
+    },
+    {
+      "id": "4a3c",
+      "scoreID": "d6c892a5-9c59-4318-bca7-0e5e999589b1",
+      "userUUID": "82542f82-5e1e-4a41-8e76-3ff3d89833ce",
+      "score": 1369,
+      "correct": 403,
+      "incorrect": 15,
+      "missedAlphabet": [
+        {
+          "alphabet": "n",
+          "counts": 5
+        },
+        {
+          "alphabet": "a",
+          "counts": 2
+        },
+        {
+          "alphabet": "t",
+          "counts": 1
+        },
+        {
+          "alphabet": "o",
+          "counts": 1
+        },
+        {
+          "alphabet": "r",
+          "counts": 1
+        },
+        {
+          "alphabet": "-",
+          "counts": 2
+        },
+        {
+          "alphabet": "b",
+          "counts": 1
+        },
+        {
+          "alphabet": "k",
+          "counts": 1
+        },
+        {
+          "alphabet": "u",
+          "counts": 1
+        }
+      ],
+      "accuracyRate": 96.4
     }
   ]
 }
