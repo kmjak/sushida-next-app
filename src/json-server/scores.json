@@ -1,4 +1,138 @@
 {
   "scores": [
+    {
+      "id": "203b",
+      "scoreID": "b18d063b-e094-474d-ab7a-abe007620163",
+      "userUUID": "82542f82-5e1e-4a41-8e76-3ff3d89833ce",
+      "score": 1053,
+      "correct": 385,
+      "incorrect": 54,
+      "missedAlphabet": [
+        {
+          "alphabet": "m",
+          "counts": 4
+        },
+        {
+          "alphabet": "b",
+          "counts": 1
+        },
+        {
+          "alphabet": "e",
+          "counts": 5
+        },
+        {
+          "alphabet": "d",
+          "counts": 3
+        },
+        {
+          "alphabet": "-",
+          "counts": 4
+        },
+        {
+          "alphabet": "s",
+          "counts": 1
+        },
+        {
+          "alphabet": "t",
+          "counts": 3
+        },
+        {
+          "alphabet": "o",
+          "counts": 3
+        },
+        {
+          "alphabet": "y",
+          "counts": 2
+        },
+        {
+          "alphabet": "h",
+          "counts": 6
+        },
+        {
+          "alphabet": "u",
+          "counts": 3
+        },
+        {
+          "alphabet": "g",
+          "counts": 5
+        },
+        {
+          "alphabet": "a",
+          "counts": 4
+        },
+        {
+          "alphabet": "i",
+          "counts": 1
+        },
+        {
+          "alphabet": "k",
+          "counts": 4
+        },
+        {
+          "alphabet": "p",
+          "counts": 1
+        },
+        {
+          "alphabet": "f",
+          "counts": 3
+        },
+        {
+          "alphabet": "r",
+          "counts": 1
+        }
+      ],
+      "accuracyRate": 87.7
+    },
+    {
+      "id": "8b26",
+      "scoreID": "46089b88-379d-41e1-bddc-ff0c42e82d3e",
+      "userUUID": "82542f82-5e1e-4a41-8e76-3ff3d89833ce",
+      "score": 1072,
+      "correct": 338,
+      "incorrect": 15,
+      "missedAlphabet": [
+        {
+          "alphabet": "k",
+          "counts": 1
+        },
+        {
+          "alphabet": "u",
+          "counts": 1
+        },
+        {
+          "alphabet": "h",
+          "counts": 1
+        },
+        {
+          "alphabet": "s",
+          "counts": 2
+        },
+        {
+          "alphabet": "m",
+          "counts": 4
+        },
+        {
+          "alphabet": "r",
+          "counts": 1
+        },
+        {
+          "alphabet": "t",
+          "counts": 1
+        },
+        {
+          "alphabet": "i",
+          "counts": 2
+        },
+        {
+          "alphabet": "g",
+          "counts": 1
+        },
+        {
+          "alphabet": "y",
+          "counts": 1
+        }
+      ],
+      "accuracyRate": 95.8
+    }
   ]
 }

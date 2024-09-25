@@ -18,6 +18,7 @@ export const scoreServices = () => {
     accuracyRate
   } : ScoreType ) : Promise<string> => {
     const scoreID = uuidv4();
+    const score = culcScore(correct,incorrect, accuracyRate);
     await fetch(`${SCORES_JSON_URL}`, {
       method: "POST",
       headers: {
@@ -26,14 +27,22 @@ export const scoreServices = () => {
       body: JSON.stringify({
         scoreID,
         userUUID,
+        score,
         correct,
         incorrect,
         missedAlphabet,
-        accuracyRate
+        accuracyRate,
       }),
     });
     return scoreID
   }
+
+  const culcScore = (correct: number, incorrect:number,accuracyRate:number) => {
+    const correctScore = (correct * 1.8) - incorrect;
+    const totalScore = (correctScore * (accuracyRate / 5)) / 10;
+    return Math.floor(totalScore);
+  }
+
   return {
     getAllScores,
     addScore,

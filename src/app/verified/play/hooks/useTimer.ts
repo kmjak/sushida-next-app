@@ -3,9 +3,9 @@ import { TimeUp } from "@/shared/types/TimeUp";
 import { useEffect, useRef, useState } from "react";
 
 export const useTimer = () => {
-  const [timeLeft, setTimeLeft] = useState<number>(10);
+  const [timeLeft, setTimeLeft] = useState<number>(90);
   const [barColor, setBarColor] = useState<string>("bg-blue-500");
-  const maxTime = 10;
+  const maxTime = 90;
   const timerRef = useRef<number | null>(null);
   const progressBarWidth = (timeLeft / maxTime) * 100;
   useEffect(() => {

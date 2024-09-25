@@ -33,6 +33,7 @@ export const ResultsComponent = () => {
     <div className="px-36 py-10 bg-gray-100 rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold text-center mb-8">結果</h1>
       <div className="space-y-4 text-center">
+        <p className="text-lg">スコア: <span className="font-semibold">{score?.score}</span></p>
         <p className="text-lg">正解: <span className="font-semibold">{score?.correct}</span></p>
         <p className="text-lg">不正解: <span className="font-semibold">{score?.incorrect}</span></p>
         <p className="text-lg">正解率: <span className="font-semibold">{score?.accuracyRate}%</span></p>
