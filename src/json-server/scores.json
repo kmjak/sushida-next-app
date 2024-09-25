@@ -133,6 +133,43 @@
         }
       ],
       "accuracyRate": 95.8
+    },
+    {
+      "id": "1817",
+      "scoreID": "050eb5b4-17eb-4210-98ca-75d5304a5159",
+      "userUUID": "82542f82-5e1e-4a41-8e76-3ff3d89833ce",
+      "score": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "missedAlphabet": [],
+      "accuracyRate": 100
+    },
+    {
+      "id": "f11b",
+      "scoreID": "eaa4d9f1-7f65-4380-8bcc-0b26c7beeaf8",
+      "userUUID": "82542f82-5e1e-4a41-8e76-3ff3d89833ce",
+      "score": 17,
+      "correct": 25,
+      "incorrect": 27,
+      "missedAlphabet": [
+        {
+          "alphabet": "p",
+          "counts": 8
+        },
+        {
+          "alphabet": "a",
+          "counts": 9
+        },
+        {
+          "alphabet": "-",
+          "counts": 9
+        },
+        {
+          "alphabet": "s",
+          "counts": 1
+        }
+      ],
+      "accuracyRate": 48.1
     }
   ]
 }

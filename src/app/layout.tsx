@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,7 +22,9 @@ export const metadata: Metadata = {
 const Header = () => {
   return (
     <header className="flex justify-center py-4 bg-indigo-300 text-white h-16">
-      <h1 className="text-3xl font-bold">Typing Game</h1>
+      <Link href="/verified/">
+        <h1 className="text-2xl font-bold">Typing Game</h1>
+      </Link>
     </header>
   );
 };

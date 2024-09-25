@@ -1,13 +1,16 @@
-import Link from "next/link";
+import { LinkTemplate } from "@/shared/utils/LinkTemplate";
 import { ResultsComponent } from "./components/results";
 
 export default function Page() {
+
   return (
-    <div className="flex flex-col justify-center items-center h-5/6 w-full">
+    <div className="flex flex-col justify-center items-center h-full w-full gap-6">
       <ResultsComponent />
-      <Link href="/verified/play">
-        <button className="mt-8 text-3xl py-3 px-5 bg-cyan-400 rounded-lg hover:bg-cyan-300 transition-colors text-white">もう一度プレイ</button>
-      </Link>
+      <div className="flex justify-center gap-8">
+        <LinkTemplate path="/verified/play" title="もう一度遊ぶ" />
+        <LinkTemplate path="/verified/scores" title="スコア一覧" />
+        <LinkTemplate path="/verified/ranking" title="ランキング" />
+      </div>
     </div>
   );
 }

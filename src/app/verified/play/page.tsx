@@ -2,7 +2,7 @@ import { TypingComponent } from "./components/Typing";
 
 export default function Page() {
   return (
-    <div className="">
+    <div className="cursor-none w-full h-full">
       <TypingComponent />
     </div>
   );
