@@ -13,7 +13,7 @@ export const ScoresListComponents: FC<ScoresListProps> = ({
     <>
       <div className="space-y-4 w-full">
         {myScores.map((score) => (
-          <div key={score.scoreID} className="w-2/5 px-36 hover:w-5/12 py-5 bg-gray-100 rounded-lg shadow-lg mx-auto">
+          <div key={score.scoreID} className="w-2/5 px-36 hover:w-5/12 py-5 bg-gray-100 rounded-lg shadow-lg mx-auto transition-all">
             <p className="text-lg">スコア: <span className="font-semibold">{score.score}</span></p>
             <p className="text-lg">正解: <span className="font-semibold">{score.correct}</span></p>
             <p className="text-lg">不正解: <span className="font-semibold">{score.incorrect}</span></p>

@@ -66,5 +66,6 @@ export const useScores = () => {
     myScores,
     top3Scores,
     weaknessAlphabets,
+    allScore,
   };
 };

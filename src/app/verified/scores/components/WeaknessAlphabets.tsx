@@ -13,7 +13,7 @@ export const WeaknessAlphabetsComponent = ({
   return (
     <div className="flex flex-col gap-4 items-center">
       {weaknessAlphabets.map((weaknessAlphabet) => (
-        <div key={weaknessAlphabet.alphabet} className="w-2/5 px-36 hover:w-5/12 py-5 bg-gray-100 rounded-lg shadow-lg">
+        <div key={weaknessAlphabet.alphabet} className="w-2/5 px-36 hover:w-5/12 py-5 bg-gray-100 rounded-lg shadow-lg transition-all">
           <p className="text-lg">
             アルファベット: <span className="font-semibold">{weaknessAlphabet.alphabet}</span>
           </p>

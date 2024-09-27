@@ -237,6 +237,57 @@
         }
       ],
       "accuracyRate": 96.4
+    },
+    {
+      "id": "545d",
+      "scoreID": "8d092654-b99b-4edd-bef9-330f014d52f5",
+      "userUUID": "144f2ef9-5234-41db-9140-ba1dcdd9f84f",
+      "score": 1348,
+      "correct": 397,
+      "incorrect": 15,
+      "missedAlphabet": [
+        {
+          "alphabet": "o",
+          "counts": 2
+        },
+        {
+          "alphabet": "b",
+          "counts": 2
+        },
+        {
+          "alphabet": "s",
+          "counts": 2
+        },
+        {
+          "alphabet": "p",
+          "counts": 1
+        },
+        {
+          "alphabet": "-",
+          "counts": 1
+        },
+        {
+          "alphabet": "k",
+          "counts": 1
+        },
+        {
+          "alphabet": "i",
+          "counts": 1
+        },
+        {
+          "alphabet": "h",
+          "counts": 3
+        },
+        {
+          "alphabet": "t",
+          "counts": 1
+        },
+        {
+          "alphabet": "c",
+          "counts": 1
+        }
+      ],
+      "accuracyRate": 96.4
     }
   ]
 }
