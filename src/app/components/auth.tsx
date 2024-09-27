@@ -5,7 +5,6 @@ import { AuthedComponent } from "./Authed";
 import { AuthFormComponent } from "./AuthForm";
 import { useAuth } from '@/hooks/useAuth';
 
-
 export const AuthComponent= () => {
   const {
     setName,

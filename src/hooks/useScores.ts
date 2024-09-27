@@ -52,7 +52,6 @@ export const useScores = () => {
         .sort((a, b) => b.counts - a.counts);
 
       setWeaknessAlphabets(weaknessAlphabetsArray);
-      console.log(weaknessAlphabetsArray);
     }
 
     if (userUUID) {

@@ -69,7 +69,6 @@ export const useAuth = () => {
 
   const handleLogout = async () : Promise<void> => {
     const res = await logout();
-    console.log(res);
     if (res) {
       setIsAuthed(false);
     }

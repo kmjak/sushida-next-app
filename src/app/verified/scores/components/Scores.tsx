@@ -1,4 +1,5 @@
 "use client"
+
 import { useScores } from "@/hooks/useScores";
 import { OptionsComponent } from "./Options";
 import { ScoresListComponents } from "./ScoresList";

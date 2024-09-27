@@ -31,7 +31,6 @@ export async function POST(req: NextRequest) {
     response.headers.set('Set-Cookie', cookie);
     return response;
   } catch (error) {
-    console.error('Error during request processing:', error);
     return NextResponse.json({ message: 'リクエスト処理中にエラーが発生しました' });
   }
 }

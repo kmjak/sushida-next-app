@@ -13,7 +13,6 @@ export async function GET(req: NextRequest) {
     }
     return NextResponse.json({ id: payload.id });
   } catch (error) {
-    console.error('Token verification failed:', error);
     return NextResponse.json({ error: 'Token verification failed' }, { status: 200 });
   }
 }
