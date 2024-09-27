@@ -38,8 +38,8 @@ export const scoreServices = () => {
   }
 
   const culcScore = (correct: number, incorrect:number,accuracyRate:number) => {
-    const correctScore = (correct * 1.8) - incorrect;
-    const totalScore = (correctScore * (accuracyRate / 5)) / 10;
+    const correctScore = (correct * 2.1) - incorrect;
+    const totalScore = (correctScore * (accuracyRate * 1.4)) / 60;
     return Math.floor(totalScore);
   }
 
