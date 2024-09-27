@@ -3,7 +3,7 @@
 import React from 'react';
 import { AuthedComponent } from "./Authed";
 import { AuthFormComponent } from "./AuthForm";
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 
 
 export const AuthComponent= () => {

@@ -1,6 +1,6 @@
 import { ScoreType } from "@/shared/types/ScoreType";
 import { useEffect, useState } from "react";
-import { useJWT } from "../../play/hooks/useJWT";
+import { useJWT } from "../app/verified/play/hooks/useJWT";
 import { scoreServices } from "@/lib/scores";
 
 export const useScores = () => {
@@ -9,6 +9,7 @@ export const useScores = () => {
   const [myScores, setMyScores] = useState<ScoreType[]>([]);
   const [top3Scores, setTop3Scores] = useState<ScoreType[]>([]);
   const [weaknessAlphabets, setWeaknessAlphabets] = useState<{counts: number, alphabet: string}[]>([]);
+  const [allScore, setAllScore] = useState<ScoreType[]>([]);
   const { handleGetJWT } = useJWT();
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export const useScores = () => {
     const fetchScores = async () => {
       const { getAllScores } = scoreServices();
       const scores = await getAllScores();
+      setAllScore(scores);
       const userScores = scores.filter((score: ScoreType) => score.userUUID === userUUID);
       setMyScores(userScores);
 
